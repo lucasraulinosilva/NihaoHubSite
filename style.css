@@ -3,7 +3,11 @@
 }
 
 .nav-link:hover {
-    color: black !important;
+    color: #545E75 !important;
+}
+
+.nav-underline .nav-link.active {
+    color: #545E75 !important;
 }
 
 .imgPequena {
@@ -13,4 +17,8 @@
 .cImg {
     width: auto;
     height: 230px;
+}
+
+.textoBlocos {
+    height: 160px;
 }
