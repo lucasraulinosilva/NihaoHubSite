@@ -14,6 +14,52 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos personalizados */
+        body {
+            background-color: #f8f9fa; /* Cor de fundo */
+        
+        }
+
+        .navbar {
+            background-color: #304D6D; /* Cor da navbar */
+        }
+
+        .navbar a {
+            color: white !important; /* Cor do texto da navbar */
+        }
+
+        .footer {
+            margin-top: auto; /* Empurra o footer para a parte inferior */
+        }
+
+       
+
+        @media (max-width: 576px) {
+            .navbar {
+                text-align: center; /* Centraliza o texto da navbar em telas pequenas */
+            }
+
+            .container {
+                height: auto; /* Ajusta a altura em telas pequenas */
+                padding: 15px; /* Reduz o padding em telas pequenas */
+            }
+
+            .col-6 {
+                width: 100%; /* Faz o card ocupar toda a largura em telas pequenas */
+            }
+
+            h2 {
+                font-size: 1.5rem; /* Ajusta o tamanho do cabeçalho */
+            }
+        }
+
+        @media (min-width: 577px) {
+            h2 {
+                font-size: 2rem; /* Tamanho maior para o cabeçalho em telas maiores */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -30,8 +76,8 @@
     </ul>
 
     <div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
-        <div class="col-6">
-            <div class="card p-5 shadow-lg" style="border-radius: 15px;">
+        <div class="col-md-6 col-10"> 
+            <div class="card p-5 shadow-lg mb-4" style="border-radius: 15px;">
                 <h2 class="text-center mb-4">Login</h2>
                 <form>
                     <div class="mb-3">
@@ -52,7 +98,14 @@
             </div>
         </div>
     </div>
+
+    <footer class="text-center mt-5">
+        <div >
+            <p>&copy; 2024 Sua Empresa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
+
 

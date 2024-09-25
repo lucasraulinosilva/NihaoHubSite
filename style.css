@@ -26,13 +26,11 @@
 .container{
     background-color: #a7cced;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 147);
     padding: 30px; 
 }
 
-.form{
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
-}
+
 
 
 

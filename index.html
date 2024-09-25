@@ -14,6 +14,54 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos personalizados */
+        body {
+            background-color: #f8f9fa; /* Cor de fundo */
+        }
+
+        .navbar {
+            background-color: #304D6D; /* Cor da navbar */
+        }
+
+        .navbar a {
+            color: white !important; /* Cor do texto da navbar */
+        }
+
+        /* Adicionando estilos responsivos */
+        @media (max-width: 576px) {
+            .navbar {
+                text-align: center; /* Centraliza o texto na navbar em telas pequenas */
+            }
+
+            .container {
+                padding: 15px; /* Reduz o padding em telas pequenas */
+            }
+
+            .fs-1 {
+                font-size: 1.5rem; /* Ajusta o tamanho da fonte para cabeçalho */
+            }
+
+            .fs-4 {
+                font-size: 1.25rem; /* Ajusta o tamanho da fonte para os subtítulos */
+            }
+        }
+
+        @media (min-width: 577px) {
+            .fs-1 {
+                font-size: 3rem; /* Tamanho maior para cabeçalho em telas maiores */
+            }
+
+            .fs-4 {
+                font-size: 1.5rem; /* Tamanho maior para subtítulos em telas maiores */
+            }
+        }
+
+        .imgPequena {
+            max-height: 200px; /* Limita a altura das imagens */
+            width: auto; /* Mantém a proporção da imagem */
+        }
+    </style>
 </head>
 
 <body>
@@ -29,24 +77,24 @@
         </li>
     </ul>
 
-    <div class="container col-12 mt-5 p-5">
+    <div class="container mt-5 p-5">
         <div class="row">
-            <div class="col-6">
-                <h1 class="fs-1 fw-bold">Pensando em estudar algo novo de uma <a style="color: #82A0BC;">forma fácil ?</a> Venha para a Nihao Hub</h1>
+            <div class="col-md-6">
+                <h1 class="fs-1 fw-bold">Pensando em estudar algo novo de uma <a style="color: #82A0BC;">forma fácil?</a> Venha para a Nihao Hub</h1>
                 <p class="fs-6">Uma plataforma de estudos onde educadores e estudantes podem interagir facilmente.</p>
-                <button type="button" class="btn btn btn-danger" style="background-color: #304D6D; border-color: #304D6D;">Saiba mais</button>
+                <button type="button" class="btn btn-danger" style="background-color: #304D6D; border-color: #304D6D;">Saiba mais</button>
             </div>
-            <div class="col-6">
-                <img src="/assets/principal1.3.svg" class="img-fluid  rounded mx-auto d-block" alt="">
+            <div class="col-md-6">
+                <img src="./assets/bloco1.3.svg" class="img-fluid rounded mx-auto d-block" alt="">
             </div>
         </div>
     </div>
 
     <div class="container-fluid mt-5 p-5">
         <div class="row d-flex justify-content-around">
-            <div class="col-3 p-3" style="background-color: #FAEDCD; border-radius: 15px;">
+            <div class="col-md-3 p-3" style="background-color: #FAEDCD; border-radius: 15px;">
                 <div class="cImg mt-3">
-                    <img src="/assets/bloco1.2.svg" class="imgPequena rounded mx-auto d-block" alt="">
+                    <img src="./assets/bloco1.2.svg" class="imgPequena rounded mx-auto d-block" alt="">
                 </div>
                 <div class="textoBlocos p-3">
                     <h1 class="fs-4 fw-bold">Aprenda assuntos profundos de forma fácil</h1>
@@ -54,9 +102,9 @@
                 </div>
                 <button type="button" class="btn btn-light rounded-pill fw-bold" style="padding: 12px; padding-left: 15px; padding-right: 15px; margin-left: 18px;">Leia mais</button>
             </div>
-            <div class="col-3 p-3" style="background-color: #D4CCE0; border-radius: 15px;">
+            <div class="col-md-3 p-3" style="background-color: #D4CCE0; border-radius: 15px;">
                 <div class="cImg mt-3">
-                    <img src="/assets/bloco2.3.svg" class="imgPequena rounded mx-auto d-block" alt="" style="height: 200px;">
+                    <img src="./assets/bloco2.3.svg" class="imgPequena rounded mx-auto d-block" alt="">
                 </div>
                 <div class="textoBlocos p-3">
                     <h1 class="fs-4 fw-bold">Em qualquer lugar e a qualquer hora</h1>
@@ -64,13 +112,13 @@
                 </div>
                 <button type="button" class="btn btn-light rounded-pill fw-bold" style="padding: 12px; padding-left: 15px; padding-right: 15px; margin-left: 18px;">Leia mais</button>
             </div>
-            <div class="col-3 p-3" style="background-color: #A7CCED; border-radius: 15px;">
+            <div class="col-md-3 p-3" style="background-color: #A7CCED; border-radius: 15px;">
                 <div class="cImg mt-3">
-                    <img src="/assets/bloco3.3.svg" class="imgPequena rounded mx-auto d-block" alt="">
+                    <img src="./assets/bloco3.3.svg" class="imgPequena rounded mx-auto d-block" alt="">
                 </div>
                 <div class="textoBlocos p-3">
                     <h1 class="fs-4 fw-bold">Sem papéis e confusões para atrapalhar</h1>
-                    <p class="fs-6">Tudo digital, acesse a web ou instale e aplicativo e pronto, só estudar</p>
+                    <p class="fs-6">Tudo digital, acesse a web ou instale o aplicativo e pronto, só estudar</p>
                 </div>
                 <button type="button" class="btn btn-light rounded-pill fw-bold" style="padding: 12px; padding-left: 15px; padding-right: 15px; margin-left: 18px;">Leia mais</button>
             </div>
