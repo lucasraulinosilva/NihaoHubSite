@@ -33,6 +33,7 @@ const output = document.getElementById("output");
 var idEducador = 0;
 var idConteudo = 0;
 var emailEducador = "";
+const divConteudos = document.getElementById("conteudos");
 
 setPersistence(auth, browserSessionPersistence)
 .then(() => {
@@ -51,23 +52,42 @@ setPersistence(auth, browserSessionPersistence)
     const errorMessage = error.message;
 });
 
-listAll(listRef)
-.then((res) => {
-    res.items.forEach((itemRef) => {
-        let div = document.getElementById("conteudos");
-        let a = document.createElement("a");
-        let p = document.createElement("p");
-        a.setAttribute("class", "pdfDowload");
-        a.setAttribute("name", itemRef["_location"]["path_"]);
-        a.setAttribute("target", "_blank");
-        a.innerHTML = itemRef["_location"]["path_"]
-        a.addEventListener("click", detalhesConteudo, false)
-        p.appendChild(a);
-        div.appendChild(p);
+if(divConteudos) {
+    listAll(listRef)
+    .then((res) => {
+        res.items.forEach((itemRef) => {
+            let div = document.getElementById("conteudos");
+            let a = document.createElement("a");
+            let p = document.createElement("p");
+            a.setAttribute("class", "pdfDowload");
+            a.setAttribute("name", itemRef["_location"]["path_"]);
+            a.setAttribute("target", "_blank");
+            a.innerHTML = itemRef["_location"]["path_"]
+            get(child(dbRef, 'Conteudo/')).then((snapshot) => {
+                snapshot.forEach(function(childSnapshot) {
+                    var childData = childSnapshot.val();
+        
+                    if (snapshot.exists()) {
+                        if(childData.nomeConteudo == itemRef["_location"]["path_"]) {
+                            a.setAttribute("id", childData.idConteudo);
+                            console.log(childData.idConteudo)
+                            a.addEventListener("click", detalhesConteudo, false)
+                            p.appendChild(a);
+                            div.appendChild(p);
+                        }
+                    } else {
+                        console.log("No data available");
+                    }
+                });
+            }).catch((error) => {
+                console.error(error);
+            });
+        });
+    }).catch((error) => {
+        // Uh-oh, an error occurred!
     });
-}).catch((error) => {
-    // Uh-oh, an error occurred!
-});
+      
+}
 
 if(input != null) {
 
@@ -114,8 +134,16 @@ if(input != null) {
         
         if(allAllowed) {
           output.innerText = "Arquivos corretos!";
-          const storageRef = ref(storage, '/' + files[0].name);
-          uploadBytes(storageRef, files[0]).then((snapshot) => {
+          console.log(files);
+        } else {
+          output.innerText = "Por favor escolha apenas pdfs.";
+        }
+      
+      });
+
+      $("#enviarArquivos").click(function() {
+        const storageRef = ref(storage, '/' + files[0].name);
+        uploadBytes(storageRef, files[0]).then((snapshot) => {
             var autor = $("#autor").val();
             var descricao = $("#descricao").val();
             var tema = $("#tema").val();
@@ -131,11 +159,6 @@ if(input != null) {
             });
               console.log('Uploaded a blob or file!');
           });
-          console.log(files);
-        } else {
-          output.innerText = "Por favor escolha apenas pdfs.";
-        }
-      
       });
 }
 
@@ -153,7 +176,7 @@ function detalhesConteudo() {
             xhr.open('GET', url);
             xhr.send();
 
-            window.location = "../view/ConteudoView.html?url=" + url;
+            window.location = "../view/ConteudoView.html?url=" + url + "&id=" + $(this).attr("id");
 
         })
         .catch((error) => {
