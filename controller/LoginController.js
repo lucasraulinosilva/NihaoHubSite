@@ -24,15 +24,26 @@ $("#login").click(function(){
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             if(userCredential.user.emailVerified == true) {
+                $("#formLogin").hide();
+                $("#carregar").show();
                 validarEducador(userCredential.user.email);
                 validarEstudante(userCredential.user.email);
             } else {
-                console.log("verifique seu email");
+                const toastLiveExample2 = document.getElementById('naoVerificado');
+                const toastBootstrap2= bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
+                toastBootstrap2.show();
             }
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorMessage);
+
+            if(errorMessage == "Firebase: Error (auth/invalid-credential).") {
+                const toastLiveExample = document.getElementById('loginErrado');
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+                toastBootstrap.show();
+            }
         });
 });
+$("#carregar").hide();

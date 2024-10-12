@@ -93,11 +93,21 @@ $("#cadastro").click(function() {
                 idFormacao: idFormacao + 1,
                 nomeFormacao: formacao
             });
+
+            const toastLiveExample = document.getElementById('cadastroBemSucedido');
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+            toastBootstrap.show();
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             
+            if(errorMessage == "Firebase: Error (auth/email-already-in-use).") {
+                const toastLiveExample2 = document.getElementById('cadastroJaExistente');
+                const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
+                toastBootstrap2.show();
+            }
+
             console.log(errorMessage);
         });
 
@@ -117,11 +127,21 @@ $("#cadastro").click(function() {
                 loginEstudante: email,
                 nomeEstudante: nome
             });
+
+            const toastLiveExample = document.getElementById('cadastroBemSucedido');
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+            toastBootstrap.show();
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             
+            if(errorMessage == "Firebase: Error (auth/email-already-in-use).") {
+                const toastLiveExample2 = document.getElementById('cadastroJaExistente');
+                const toastBootstrap2 = bootstrap.Toast.getOrCreateInstance(toastLiveExample2);
+                toastBootstrap2.show();
+            }
+
             console.log(errorMessage);
         });
     }
