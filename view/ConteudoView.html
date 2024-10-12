@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <H1><a id="dowloadConteudo" target="_blank">DOWLOAD PDF</a></H1>
+
+    <img src="../resource/images/brilho-e-contraste.png" alt="" id="modo" width="50px" style="cursor: pointer;">
+    <div id="itens" style="position: relative;">
+        <iframe id="iframe"
+            src=""
+            width="600" height="780" style="border: none;"></iframe>
+    </div>
+    <script type="module" src="../controller/ConteudoController.js"></script>
+    <script>
+        // função pra ler querystring
+        function queryString(parameter) {  
+                    var loc = location.search.substring(1, location.search.length);   
+                    var param_value = false;   
+                    var params = loc.split("&");   
+                    for (i=0; i<params.length;i++) {   
+                        param_name = params[i].substring(0,params[i].indexOf('='));   
+                        if (param_name == parameter) {                                          
+                            param_value = params[i].substring(params[i].indexOf('=')+1)   
+                        }   
+                    }   
+                    if (param_value) {   
+                        return param_value;   
+                    }   
+                    else {   
+                        return undefined;   
+                    }   
+                }
+
+        var variavel = queryString("url");
+        
+        console.log(variavel);
+
+        $("#dowloadConteudo").attr("href", variavel);
+        $("#iframe").attr("src", "http://docs.google.com/viewer?url="+variavel+"&embedded=true")
+
+        var cover = document.createElement("div");
+        cover.setAttribute("id", "filtro");
+        let css = `
+            position: absolute;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 600px;
+            height: 780px;
+            background-color: #EDEDE9;
+            mix-blend-mode: difference;
+            z-index: 1;
+        `
+        cover.setAttribute("style", css);
+        let itens = document.getElementById("itens")
+        itens.appendChild(cover);
+
+        $("#filtro").hide();
+
+        $("#modo").click(function() {
+            if($("#filtro").is(":visible")) {
+                $("#filtro").hide();
+            } else {
+                $("#filtro").show();
+            }
+        })
+
+    </script>
+</body>
+
+</html>
