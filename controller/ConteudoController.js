@@ -70,7 +70,6 @@ if(divConteudos) {
                     if (snapshot.exists()) {
                         if(childData.nomeConteudo == itemRef["_location"]["path_"]) {
                             a.setAttribute("id", childData.idConteudo);
-                            console.log(childData.idConteudo)
                             a.addEventListener("click", detalhesConteudo, false)
                             p.appendChild(a);
                             div.appendChild(p);

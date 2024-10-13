@@ -8,94 +8,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
-    <H1><a id="dowloadConteudo" target="_blank">DOWLOAD PDF</a></H1>
+    <div style="margin-left: 30px;">
+        <H1><a id="dowloadConteudo" target="_blank">DOWLOAD PDF</a></H1>
 
-    <div>
-        <p id="nomeConteudoEscolhido"></p>
-        <p id="temaConteudoEscolhido"></p>
-        <p id="autorConteudoEscolhido"></p>
-        <p id="descricaoConteudoEscolhido"></p>
-    </div>
+        <div>
+            <p id="nomeConteudoEscolhido"></p>
+            <p id="temaConteudoEscolhido"></p>
+            <p id="autorConteudoEscolhido"></p>
+            <p id="descricaoConteudoEscolhido"></p>
+        </div>
+        <div>
+            <h1>Comentários</h1>
+            <ul id="comentariosConteudo">
+            </ul>
+            <div>
+                <input type="text" placeholder="Comentário" id="inserirComentario">
+                <input type="button" value="Comentar" id="comentar">
+            </div>
+        </div>
+        <div style="width: 100px; margin-top: 20px; margin-bottom: 20px;">
+            <div class="row">
+                <div class="col-6">
+                    <img src="../resource/images/like.png" alt="" style="width: 30px; cursor: pointer;" id="like">
+                </div>
+                <div class="col-6">
+                    <img src="../resource/images/dislike.png" alt="" style="width: 30px; cursor: pointer;" id="dislike">
+                </div>
+            </div>
+            <h2>Like</h2>
+            <p id="numeroLikes"></p>
+            <h2>Dislike</h2>
+            <p id="numeroDislikes"></p>
+        </div>
 
-    <img src="../resource/images/brilho-e-contraste.png" alt="" id="modo" width="50px" style="cursor: pointer;">
-    <div id="itens" style="position: relative;">
-        <iframe id="iframe" src="" width="600" height="780" style="border: none;"></iframe>
+        <img src="../resource/images/brilho-e-contraste.png" alt="" id="modo" width="50px" style="cursor: pointer;">
+        <div id="itens" style="position: relative;">
+            <iframe id="iframe" src="" width="600" height="780" style="border: none;"></iframe>
+        </div>
     </div>
     <script type="module" src="../controller/ConteudoController.js"></script>
-    <script type="module">
-        import { getDatabase, child, get, ref} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
-
-        var i = 0;
-        var param_name = "";
-        var dbRef = ref(getDatabase());
-        // função pra ler querystring
-        function queryString(parameter) {
-            var loc = location.search.substring(1, location.search.length);
-            var param_value = false;
-            var params = loc.split("&");
-            for (i = 0; i < params.length; i++) {
-                param_name = params[i].substring(0, params[i].indexOf('='));
-                if (param_name == parameter) {
-                    param_value = params[i].substring(params[i].indexOf('=') + 1)
-                }
-            }
-            if (param_value) {
-                return param_value;
-            } else {
-                return undefined;
-            }
-        }
-
-        var variavel = queryString("url");
-        var id = queryString("id");  
-
-        get(child(dbRef, 'Conteudo/')).then((snapshot) => {
-        snapshot.forEach(function(childSnapshot) {
-            var childData = childSnapshot.val();
-            if(childData.idConteudo == id) {
-                $("#nomeConteudoEscolhido").html("Nome: " + childData.nomeConteudo);
-                $("#temaConteudoEscolhido").html("Tema: " + childData.tema);
-                $("#autorConteudoEscolhido").html("Autor: " + childData.autor);
-                $("#descricaoConteudoEscolhido").html("Descrição: " + childData.descricao);
-            }
-        });
-        }).catch((error) => {
-            console.error(error);
-        });
-
-        $("#dowloadConteudo").attr("href", variavel);
-        $("#iframe").attr("src", "https://docs.google.com/viewer?url=" + variavel + "&embedded=true")
-
-        var cover = document.createElement("div");
-        cover.setAttribute("id", "filtro");
-        let css = `
-            position: absolute;
-            pointer-events: none;
-            top: 0;
-            left: 0;
-            width: 600px;
-            height: 780px;
-            background-color: #EDEDE9;
-            mix-blend-mode: difference;
-            z-index: 1;
-        `
-        cover.setAttribute("style", css);
-        let itens = document.getElementById("itens")
-        itens.appendChild(cover);
-
-        $("#filtro").hide();
-
-        $("#modo").click(function () {
-            if ($("#filtro").is(":visible")) {
-                $("#filtro").hide();
-            } else {
-                $("#filtro").show();
-            }
-        })
-    </script>
+    <script type="module" src="../controller/VisualizadorConteudoController.js"></script>
 </body>
 
 </html>
