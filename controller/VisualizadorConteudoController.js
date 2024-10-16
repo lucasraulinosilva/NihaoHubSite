@@ -255,7 +255,7 @@ $("#dislike").click(function () {
             });
         }
         if (tipoAvaliacao == "mudarFalse") {
-            set(ref(database, 'Avaliacao/' + 1), {
+            set(ref(database, 'Avaliacao/' + idAvaliacaoMudar), {
                 nomeAutorComentario: nomeComentarista,
                 idConteudo: id,
                 idAvaliacao: 1,
