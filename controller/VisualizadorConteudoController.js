@@ -190,7 +190,7 @@ $("#like").click(function () {
     get(child(dbRef, 'Avaliacao/')).then((snapshot) => {
         snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
-            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false" && found == false) {
+            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && (childData.avaliacao == "false" || childaData.avaliacao == "") && found == false) {
                 tipoAvaliacao = "mudarTrue";
                 idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
@@ -222,6 +222,14 @@ $("#like").click(function () {
                 avaliacao: "true"
             });
         }
+        if (tipoAvaliacao == "nenhuma") {
+            update(ref(database, 'Avaliacao/' + idAvaliacaoMudar + "/"), {
+                nomeAutorComentario: nomeComentarista,
+                idConteudo: id,
+                idAvaliacao: idAvaliacaoMudar,
+                avaliacao: ""
+            });
+        }
         $("#numeroLikes").html(numeroLikes);
         $("#numeroDislikes").html(numeroDislikes);
     }).catch((error) => {
@@ -237,7 +245,7 @@ $("#dislike").click(function () {
     get(child(dbRef, 'Avaliacao/')).then((snapshot) => {
         snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
-            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "true" && found == false) {
+            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && (childData.avaliacao == "true" || childaData.avaliacao == "") && found == false) {
                 tipoAvaliacao = "mudarFalse";
                 idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
@@ -267,6 +275,14 @@ $("#dislike").click(function () {
                 idConteudo: id,
                 idAvaliacao: idAvaliacaoMudar,
                 avaliacao: "false"
+            });
+        }
+        if (tipoAvaliacao == "nenhuma") {
+            update(ref(database, 'Avaliacao/' + idAvaliacaoMudar + "/"), {
+                nomeAutorComentario: nomeComentarista,
+                idConteudo: id,
+                idAvaliacao: idAvaliacaoMudar,
+                avaliacao: ""
             });
         }
         $("#numeroLikes").html(numeroLikes);
