@@ -34,6 +34,7 @@ var idEducador = 0;
 var idConteudo = 0;
 var emailEducador = "";
 const divConteudos = document.getElementById("conteudos");
+var files = "";
 
 setPersistence(auth, browserSessionPersistence)
 .then(() => {
@@ -121,7 +122,7 @@ if(input != null) {
     });
 
     input.addEventListener("change", (event) => {
-        const files = event.target.files;
+        files = event.target.files;
         if (files.length === 0) {
           output.innerText = "escolha arquivos pdfs…";
           return;
@@ -140,7 +141,7 @@ if(input != null) {
       
       });
 
-      $("#enviarArquivos").click(function() {
+      $("#enviarArquivo").click(function() {
         const storageRef = ref(storage, '/' + files[0].name);
         uploadBytes(storageRef, files[0]).then((snapshot) => {
             var autor = $("#autor").val();

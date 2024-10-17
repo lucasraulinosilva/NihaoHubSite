@@ -25,8 +25,44 @@ var numeroDislikes = 0;
 var tipoAvaliacao = "";
 var database = getDatabase();
 var found = false;
-
 var auth = getAuth();
+
+//NÃO MUDA NADA
+function atualizarLikes() {
+    get(child(dbRef, 'Avaliacao/')).then((snapshot) => {
+        snapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+            if (childData.idConteudo == id) {
+                if (childData.avaliacao == "true") {
+                    numeroLikes++;
+                } else if (childData.avaliacao == "false") {
+                    numeroDislikes++;
+                }
+            }
+            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista) {
+                if (childData.avaliacao == "true") {
+                    $("#like").attr("style", "background-color: #ADE8F4; width: 30px; cursor: pointer;");
+                    $("#dislike").attr("style", "background-color: white; width: 30px; cursor: pointer;");
+                } else if (childData.avaliacao == "false") {
+                    $("#dislike").attr("style", "background-color: #E5383B; width: 30px; cursor: pointer;");
+                    $("#like").attr("style", "background-color: white; width: 30px; cursor: pointer;");
+                } else {
+                    $("#dislike").attr("style", "background-color: white; width: 30px; cursor: pointer;");
+                    $("#like").attr("style", "background-color: white; width: 30px; cursor: pointer;");
+                }
+            }
+            idAvaliacao = childData.idAvaliacao;
+        });
+        $("#numeroLikes").html(numeroLikes);
+        $("#numeroDislikes").html(numeroDislikes);
+        numeroLikes = 0;
+        numeroDislikes = 0;
+        found = false;
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 setPersistence(auth, browserSessionPersistence)
     .then(() => {
         // Existing and future Auth states are now persisted in the current
@@ -56,34 +92,7 @@ setPersistence(auth, browserSessionPersistence)
             console.error(error);
         });
 
-
-        get(child(dbRef, 'Avaliacao/')).then((snapshot) => {
-            snapshot.forEach(function (childSnapshot) {
-                var childData = childSnapshot.val();
-                if (childData.idConteudo == id) {
-                    if (childData.avaliacao == "true") {
-                        numeroLikes++;
-                    } else if (childData.avaliacao == "false") {
-                        numeroDislikes++;
-                    }
-                }
-                if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista) {
-                    if (childData.avaliacao == "true") {
-                        $("#like").attr("style", "background-color: #ADE8F4; width: 30px; cursor: pointer;");
-                        $("#dislike").attr("style", "background-color: white; width: 30px; cursor: pointer;");
-                    } else if (childData.avaliacao == "false") {
-                        $("#dislike").attr("style", "background-color: #E5383B; width: 30px; cursor: pointer;");
-                        $("#like").attr("style", "background-color: white; width: 30px; cursor: pointer;");
-                    }
-                }
-                idAvaliacao = childData.idAvaliacao;
-            });
-            $("#numeroLikes").html(numeroLikes);
-            $("#numeroDislikes").html(numeroDislikes);
-        }).catch((error) => {
-            console.error(error);
-        });
-
+        atualizarLikes();
 
         return signInWithEmailAndPassword(auth, email, password);
     })
@@ -184,18 +193,20 @@ $("#modo").click(function () {
     }
 })
 
+//NÃO MUDA NADA
 $("#like").click(function () {
     $(this).attr("style", "background-color: #ADE8F4; width: 30px; cursor: pointer;");
     $("#dislike").attr("style", "background-color: white; width: 30px; cursor: pointer;");
     get(child(dbRef, 'Avaliacao/')).then((snapshot) => {
         snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
-            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false" && found == false) {
+            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && (childData.avaliacao == "false" || childData.avaliacao == "") && found == false) {
                 tipoAvaliacao = "mudarTrue";
                 idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
             } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "true" && found == false){
                 tipoAvaliacao = "nenhuma";
+                idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
             } else if (childData.idConteudo == id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
@@ -203,9 +214,6 @@ $("#like").click(function () {
                 tipoAvaliacao = "naoExiste";
             }
         });
-        console.log(id);
-        console.log(tipoAvaliacao);
-        console.log(idAvaliacaoMudar);
         if (tipoAvaliacao == "naoExiste") {
             set(ref(database, 'Avaliacao/' + (idAvaliacao + 1)), {
                 nomeAutorComentario: nomeComentarista,
@@ -222,15 +230,21 @@ $("#like").click(function () {
                 avaliacao: "true"
             });
         }
-        $("#numeroLikes").html(numeroLikes);
-        $("#numeroDislikes").html(numeroDislikes);
+        if (tipoAvaliacao == "nenhuma") {
+            update(ref(database, 'Avaliacao/' + idAvaliacaoMudar + "/"), {
+                nomeAutorComentario: nomeComentarista,
+                idConteudo: id,
+                idAvaliacao: idAvaliacaoMudar,
+                avaliacao: ""
+            });
+        }
+        atualizarLikes();
     }).catch((error) => {
         console.error(error);
     });
 });
 
-console.log("c");
-
+//NÃO MUDA NADA
 $("#dislike").click(function () {
     $(this).attr("style", "background-color: #E5383B; width: 30px; cursor: pointer;");
     $("#like").attr("style", "background-color: white; width: 30px; cursor: pointer;");
@@ -241,8 +255,14 @@ $("#dislike").click(function () {
                 tipoAvaliacao = "mudarFalse";
                 idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
-            } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false" && found == false){
+            } else if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "" && found == false) {
+                tipoAvaliacao = "mudarFalse";
+                idAvaliacaoMudar = childData.idAvaliacao;
+                found = true;
+            }
+            else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false" && found == false){
                 tipoAvaliacao = "nenhuma";
+                idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
             } else if (childData.idConteudo == id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
@@ -250,9 +270,6 @@ $("#dislike").click(function () {
                 tipoAvaliacao = "naoExiste";
             }
         });
-        console.log(id);
-        console.log(tipoAvaliacao);
-        console.log(idAvaliacaoMudar);
         if (tipoAvaliacao == "naoExiste") {
             set(ref(database, 'Avaliacao/' + (idAvaliacao + 1)), {
                 nomeAutorComentario: nomeComentarista,
@@ -269,9 +286,18 @@ $("#dislike").click(function () {
                 avaliacao: "false"
             });
         }
-        $("#numeroLikes").html(numeroLikes);
-        $("#numeroDislikes").html(numeroDislikes);
+        if (tipoAvaliacao == "nenhuma") {
+            update(ref(database, 'Avaliacao/' + idAvaliacaoMudar + "/"), {
+                nomeAutorComentario: nomeComentarista,
+                idConteudo: id,
+                idAvaliacao: idAvaliacaoMudar,
+                avaliacao: ""
+            });
+        }
+        atualizarLikes();
     }).catch((error) => {
         console.error(error);
     });
 });
+
+console.log("j");
