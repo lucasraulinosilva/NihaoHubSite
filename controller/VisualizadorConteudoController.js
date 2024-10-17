@@ -3,7 +3,8 @@ import {
     child,
     get,
     ref,
-    set
+    set,
+    update
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 import {
     getAuth,
@@ -189,20 +190,22 @@ $("#like").click(function () {
     get(child(dbRef, 'Avaliacao/')).then((snapshot) => {
         snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
-            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false") {
+            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false" && found == false) {
                 tipoAvaliacao = "mudarTrue";
                 idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
-            } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "true"){
+            } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "true" && found == false){
                 tipoAvaliacao = "nenhuma";
                 found = true;
             } else if (childData.idConteudo == id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
             } else if (childData.idConteudo != id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
-                found = true;
             }
         });
+        console.log(id);
+        console.log(tipoAvaliacao);
+        console.log(idAvaliacaoMudar);
         if (tipoAvaliacao == "naoExiste") {
             set(ref(database, 'Avaliacao/' + (idAvaliacao + 1)), {
                 nomeAutorComentario: nomeComentarista,
@@ -212,7 +215,7 @@ $("#like").click(function () {
             });
         }
         if (tipoAvaliacao == "mudarTrue") {
-            set(ref(database, 'Avaliacao/' + idAvaliacaoMudar), {
+            update(ref(database, 'Avaliacao/' + idAvaliacaoMudar + "/"), {
                 nomeAutorComentario: nomeComentarista,
                 idConteudo: id,
                 idAvaliacao: idAvaliacaoMudar,
@@ -226,26 +229,30 @@ $("#like").click(function () {
     });
 });
 
+console.log("c");
+
 $("#dislike").click(function () {
     $(this).attr("style", "background-color: #E5383B; width: 30px; cursor: pointer;");
     $("#like").attr("style", "background-color: white; width: 30px; cursor: pointer;");
     get(child(dbRef, 'Avaliacao/')).then((snapshot) => {
         snapshot.forEach(function (childSnapshot) {
             var childData = childSnapshot.val();
-            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "true") {
+            if (childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "true" && found == false) {
                 tipoAvaliacao = "mudarFalse";
                 idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
-            } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false"){
+            } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false" && found == false){
                 tipoAvaliacao = "nenhuma";
                 found = true;
             } else if (childData.idConteudo == id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
             } else if (childData.idConteudo != id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
-                found = true;
             }
         });
+        console.log(id);
+        console.log(tipoAvaliacao);
+        console.log(idAvaliacaoMudar);
         if (tipoAvaliacao == "naoExiste") {
             set(ref(database, 'Avaliacao/' + (idAvaliacao + 1)), {
                 nomeAutorComentario: nomeComentarista,
@@ -255,10 +262,10 @@ $("#dislike").click(function () {
             });
         }
         if (tipoAvaliacao == "mudarFalse") {
-            set(ref(database, 'Avaliacao/' + idAvaliacaoMudar), {
+            update(ref(database, 'Avaliacao/' + idAvaliacaoMudar + "/"), {
                 nomeAutorComentario: nomeComentarista,
                 idConteudo: id,
-                idAvaliacao: 1,
+                idAvaliacao: idAvaliacaoMudar,
                 avaliacao: "false"
             });
         }
