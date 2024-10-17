@@ -1,32 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home Educador - NihaoHub</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #304D6D;
+        }
+
+        .navbar a {
+            color: white !important;
+        }
+
+        .card-header {
+            background-color: #304D6D;
+            color: white;
+            
+        }
+
+        .card {
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .content-box {
+            background-color: #ffffff;
+            border: 1px solid #cce7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-box h5 {
+            color: #304D6D;
+        }
+
+        .content-box p {
+            color: #5a6c7a;
+        }
+
+        .content-box small {
+            color: #304D6D;
+        }
+
+        #enviarArquivo {
+            width: auto;
+            background-color: #304D6D;
+            border-color: #304D6D;
+        }
+
+        #enviarArquivo:hover {
+            background-color: #002d5b;
+            border-color: #002d5b;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .content-box {
+                margin-bottom: 15px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Educador</h1>
-    <h1 id="emailGeral"></h1>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark p-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">NihaoHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="educador.html">Educador</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div id="conteudos">
+    <!-- Conteúdo Principal -->
+    <main class="container mt-5">
+        <h1 class="text-center mb-4">Bem-vindo, Educador!</h1>
+        <h2 class="text-center" id="emailGeral">Email do educador</h2>
 
-    </div>
+        <!-- Seção de Conteúdos -->
+        <div id="conteudos" class="row">
+            <!-- Exemplo de conteúdo em forma de caixa -->
+            <div class="col-md-4">
+                <div class="content-box">
+                    <h5>Tema do Conteúdo</h5>
+                    <p>Descrição breve do conteúdo postado.</p>
+                    <small>Autor: Nome do autor</small>
+                </div>
+            </div>
+        </div>
 
-    <div>
-        <form onsubmit="return false;">
-            <input type="text" placeholder="autor" id="autor" required/>
-            <input type="text" placeholder="descrição" id="descricao" required/>
-            <input type="text" placeholder="tema" id="tema" required>
-            <input type="file" id="arquivos" required/>
-            <output id="output">escolha arquivos pdf…</output>
-            <input type="submit" id="enviarArquivo" value="Enviar">
-        </form>
-    </div>
+        <!-- Formulário de Envio de Conteúdos -->
+        <div class="card">
+            <div class="card-header">
+                Enviar Conteúdo
+            </div>
+            <div class="card-body">
+                <form class="row g-3" onsubmit="return false;">
+                    <div class="col-md-6">
+                        <label for="autor" class="form-label">Autor</label>
+                        <input type="text" class="form-control" id="autor" placeholder="Digite o nome do autor" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <input type="text" class="form-control" id="descricao" placeholder="Digite uma descrição" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tema" class="form-label">Tema</label>
+                        <input type="text" class="form-control" id="tema" placeholder="Digite o tema" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="arquivos" class="form-label">Arquivo</label>
+                        <input type="file" class="form-control" id="arquivos" required>
+                        <output id="output" class="form-text mt-2">Escolha arquivos PDF...</output>
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" id="enviarArquivo" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 NihaoHub. Todos os direitos reservados.</p>
+    </footer>
 
     <script type="module" src="../controller/ConteudoController.js"></script>
 </body>
+
 </html>
+
+
+
+
