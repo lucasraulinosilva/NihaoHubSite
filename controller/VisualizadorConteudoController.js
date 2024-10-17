@@ -196,6 +196,7 @@ $("#like").click(function () {
                 found = true;
             } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "true" && found == false){
                 tipoAvaliacao = "nenhuma";
+                idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
             } else if (childData.idConteudo == id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
@@ -251,6 +252,7 @@ $("#dislike").click(function () {
                 found = true;
             } else if(childData.idConteudo == id && childData.nomeAutorComentario == nomeComentarista && childData.avaliacao == "false" && found == false){
                 tipoAvaliacao = "nenhuma";
+                idAvaliacaoMudar = childData.idAvaliacao;
                 found = true;
             } else if (childData.idConteudo == id && childData.nomeAutorComentario != nomeComentarista && found == false) {
                 tipoAvaliacao = "naoExiste";
