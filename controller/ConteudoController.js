@@ -43,7 +43,7 @@ setPersistence(auth, browserSessionPersistence)
     // ...
     // New sign-in will be persisted with session persistence.
     emailEducador = auth.currentUser.email;
-    $("#emailEducador").html(emailEducador);
+    $("#emailGeral").html(auth.currentUser.email);
     return signInWithEmailAndPassword(auth, email, password);
 })
 .catch((error) => {
@@ -183,6 +183,12 @@ function detalhesConteudo() {
         });
 };
 
+export function deletarConteudo() {
+    var userId = $("#valorExcluirConteudo").val();
+    var singleRef = child(dbRef, 'Conteudo/' + userId);
 
+    remove(singleRef).then(function () {}).catch(function (error) {});
+
+}
 
 

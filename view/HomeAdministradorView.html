@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <h1>Administrador</h1>
+    <h1 id="emailGeral"></h1>
+
+    <div id="conteudosAdministrador">
+
+    </div>
+    <div id="usuariosAdministrador">
+
+    </div>
+
+    <div>
+        <h3>Excluir conteúdo</h3>
+        <input type="text" id="valorExcluirConteudo">
+        <input type="button" value="Excluir" id="excluirConteudo">
+    </div>
+
+    <div>
+        <h3>Excluir estudante</h3>
+        <input type="text" id="valorExcluirEstudante">
+        <input type="button" value="Excluir" id="excluirEstudante">
+    </div>
+
+    <div>
+        <h3>Excluir educador</h3>
+        <input type="text" id="valorExcluirEducador">
+        <input type="button" value="Excluir" id="excluirEducador">
+    </div>
+
+    <script src="../controller/ConteudoAdministradorController.js" type="module"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import { getDatabase, ref, child, get} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getDatabase, ref, child, get, remove} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
 
 export function validarEstudante(email) {
@@ -19,4 +19,13 @@ export function validarEstudante(email) {
     }).catch((error) => {
         console.error(error);
     });
+}
+
+export function deletarEstudante() {
+    const database = getDatabase();
+    var userId = $("#valorExcluirEstudante").val();
+    var singleRef = ref(database, 'Estudante/' + userId);
+
+    remove(singleRef).then(function () {}).catch(function (error) {});
+
 }

@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 import { validarEducador } from "./EducadorController.js";
 import { validarEstudante } from "./EstudanteController.js";
+import { validarAdministrador } from "./AdministradorController.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA8w_7KRWrWsLEKm7LTEHzTktQZnMP2uBs",
@@ -26,6 +27,7 @@ $("#login").click(function(){
             if(userCredential.user.emailVerified == true) {
                 $("#formLogin").hide();
                 $("#carregar").show();
+                validarAdministrador(userCredential.user.email);
                 validarEducador(userCredential.user.email);
                 validarEstudante(userCredential.user.email);
             } else {
