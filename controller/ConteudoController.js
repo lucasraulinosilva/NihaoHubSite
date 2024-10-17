@@ -34,7 +34,7 @@ var idEducador = 0;
 var idConteudo = 0;
 var emailEducador = "";
 const divConteudos = document.getElementById("conteudos");
-const files = "";
+var files = "";
 
 setPersistence(auth, browserSessionPersistence)
 .then(() => {
