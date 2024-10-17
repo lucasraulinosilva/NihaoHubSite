@@ -140,7 +140,7 @@ if(input != null) {
       
       });
 
-      $("#enviarArquivos").click(function() {
+      $("#enviarArquivo").click(function() {
         const storageRef = ref(storage, '/' + files[0].name);
         uploadBytes(storageRef, files[0]).then((snapshot) => {
             var autor = $("#autor").val();
