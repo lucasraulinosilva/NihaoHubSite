@@ -121,7 +121,7 @@ function queryString(parameter) {
 }
 
 var variavel = queryString("url");
-var id = queryString("id");
+var id = parseInt(queryString("id"));
 
 get(child(dbRef, 'Conteudo/')).then((snapshot) => {
     snapshot.forEach(function (childSnapshot) {
