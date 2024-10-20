@@ -121,7 +121,7 @@ function queryString(parameter) {
 }
 
 var variavel = queryString("url");
-var id = queryString("id");
+var id = parseInt(queryString("id"));
 
 get(child(dbRef, 'Conteudo/')).then((snapshot) => {
     snapshot.forEach(function (childSnapshot) {
@@ -238,12 +238,9 @@ $("#like").click(function () {
                 avaliacao: ""
             });
         }
-<<<<<<< HEAD
         $("#numeroLikes").html(numeroLikes);
         $("#numeroDislikes").html(numeroDislikes);
-=======
         atualizarLikes();
->>>>>>> 1c758f7 (like finalmente terminado)
     }).catch((error) => {
         console.error(error);
     });
@@ -299,12 +296,9 @@ $("#dislike").click(function () {
                 avaliacao: ""
             });
         }
-<<<<<<< HEAD
         $("#numeroLikes").html(numeroLikes);
         $("#numeroDislikes").html(numeroDislikes);
-=======
         atualizarLikes();
->>>>>>> 1c758f7 (like finalmente terminado)
     }).catch((error) => {
         console.error(error);
     });
