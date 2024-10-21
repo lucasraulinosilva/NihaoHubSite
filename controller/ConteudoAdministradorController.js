@@ -71,7 +71,7 @@ function detalhesConteudo() {
             xhr.open('GET', url);
             xhr.send();
 
-            window.location = "../view/ConteudoView.html?url=" + url + "&id=" + $(this).attr("id");
+            window.location = "../view/ConteudoAdministradorView.html?url=" + url + "&id=" + $(this).attr("id");
 
         })
         .catch((error) => {
@@ -95,7 +95,8 @@ setPersistence(auth, browserSessionPersistence)
         const errorMessage = error.message;
     });
 
-listAll(listRef)
+if (divConteudosAdministrador) {
+    listAll(listRef)
     .then((res) => {
         res.items.forEach((itemRef) => {
             let div = document.getElementById("conteudosAdministrador");
@@ -127,44 +128,47 @@ listAll(listRef)
     }).catch((error) => {
         // Uh-oh, an error occurred!
     });
+}
 
-get(child(dbRef, 'Educador/')).then((snapshot) => {
-    snapshot.forEach(function (childSnapshot) {
-        var childData = childSnapshot.val();
-
-        if (snapshot.exists()) {
-            let div = document.getElementById("usuariosAdministrador");
-            let a = document.createElement("a");
-            let p = document.createElement("p");
-            a.innerHTML = "Id: " + childData.idEducador + " Nome: " + childData.nomeEducador + " Email: " + childData.loginEducador + " Classe: Educador";
-            p.appendChild(a);
-            div.appendChild(p);
-        } else {
-            console.log("No data available");
-        }
+if (divUsuariosAdministrador) {
+    get(child(dbRef, 'Educador/')).then((snapshot) => {
+        snapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+    
+            if (snapshot.exists()) {
+                let div = document.getElementById("usuariosAdministrador");
+                let a = document.createElement("a");
+                let p = document.createElement("p");
+                a.innerHTML = "Id: " + childData.idEducador + " Nome: " + childData.nomeEducador + " Email: " + childData.loginEducador + " Classe: Educador";
+                p.appendChild(a);
+                div.appendChild(p);
+            } else {
+                console.log("No data available");
+            }
+        });
+    }).catch((error) => {
+        console.error(error);
     });
-}).catch((error) => {
-    console.error(error);
-});
-
-get(child(dbRef, 'Estudante/')).then((snapshot) => {
-    snapshot.forEach(function (childSnapshot) {
-        var childData = childSnapshot.val();
-
-        if (snapshot.exists()) {
-            let div = document.getElementById("usuariosAdministrador");
-            let a = document.createElement("a");
-            let p = document.createElement("p");
-            a.innerHTML = "Id: " + childData.idEstudante + " Nome: " + childData.nomeEstudante + " Email: " + childData.loginEstudante + " Classe: Estudante";
-            p.appendChild(a);
-            div.appendChild(p);
-        } else {
-            console.log("No data available");
-        }
+    
+    get(child(dbRef, 'Estudante/')).then((snapshot) => {
+        snapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+    
+            if (snapshot.exists()) {
+                let div = document.getElementById("usuariosAdministrador");
+                let a = document.createElement("a");
+                let p = document.createElement("p");
+                a.innerHTML = "Id: " + childData.idEstudante + " Nome: " + childData.nomeEstudante + " Email: " + childData.loginEstudante + " Classe: Estudante";
+                p.appendChild(a);
+                div.appendChild(p);
+            } else {
+                console.log("No data available");
+            }
+        });
+    }).catch((error) => {
+        console.error(error);
     });
-}).catch((error) => {
-    console.error(error);
-});
+}
 
 $("#excluirEducador").click(function () {
     deletarEducador(user);
