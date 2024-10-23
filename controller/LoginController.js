@@ -5,7 +5,7 @@ import { validarEstudante } from "./EstudanteController.js";
 import { validarAdministrador } from "./AdministradorController.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA8w_7KRWrWsLEKm7LTEHzTktQZnMP2uBs",
+    apiKey: process.env.FIREBASEKEY,
     authDomain: "nihao-hub.firebaseapp.com",
     databaseURL: "https://nihao-hub-default-rtdb.firebaseio.com",
     projectId: "nihao-hub",
