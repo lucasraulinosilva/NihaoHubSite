@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 import { validarEducador } from "./EducadorController.js";
 import { validarEstudante } from "./EstudanteController.js";
 import { validarAdministrador } from "./AdministradorController.js";
@@ -49,3 +49,23 @@ $("#login").click(function(){
         });
 });
 $("#carregar").hide();
+
+$("#esqueceuSenha").click(function(){
+    if ($("#emailLogin").val() != ""){
+        const auth = getAuth();
+        sendPasswordResetEmail(auth, $("#emailLogin").val())
+        .then(() => {
+            const toastLiveExample3 = document.getElementById('emailEnviado');
+            const toastBootstrap3 = bootstrap.Toast.getOrCreateInstance(toastLiveExample3);
+            toastBootstrap3.show();
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
+    } else {
+        const toastLiveExample4 = document.getElementById('colocarEmail');
+        const toastBootstrap4 = bootstrap.Toast.getOrCreateInstance(toastLiveExample4);
+        toastBootstrap4.show();
+    }
+});
