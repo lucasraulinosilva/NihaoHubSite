@@ -13,62 +13,123 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-      <style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #304D6D;
+        }
+
+        .navbar a {
+            color: white !important;
+        }
+
         #chat-box {
-          width: 500px;
-          height: 400px;
-          border: 1px solid #ccc;
-          padding: 10px;
-          overflow-y: auto;
+            width: 500px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
         }
+
         #user-input {
-          width: 400px;
+            width: 400px;
         }
-      </style>
+
+        .card-header {
+            background-color: #304D6D;
+            color: white;
+
+        }
+
+        .card {
+            margin-top: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+    </style>
 </head>
 
 <body>
-    <div style="margin-left: 30px;">
-        <H1><a id="dowloadConteudo" target="_blank">DOWLOAD PDF</a></H1>
-
-        <div>
-            <p id="nomeConteudoEscolhido"></p>
-            <p id="temaConteudoEscolhido"></p>
-            <p id="autorConteudoEscolhido"></p>
-            <p id="descricaoConteudoEscolhido"></p>
-        </div>
-        <div>
-            <h1>Comentários</h1>
-            <ul id="comentariosConteudo">
-            </ul>
-            <div>
-                <input type="text" placeholder="Comentário" id="inserirComentario">
-                <input type="button" value="Comentar" id="comentar">
+    <nav class="navbar navbar-expand-lg navbar-dark p-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">NihaoHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div style="width: 100px; margin-top: 20px; margin-bottom: 20px;">
+    </nav>
+
+    <!-- Formulário de Envio de Conteúdos -->
+    <div class="card container mt-5 mb-5" style="padding: 0;">
+        <div class="card-header">
+            <h5 id="nomeConteudoEscolhido" class="m-2"></h5>
+        </div>
+        <div class="card-body">
             <div class="row">
                 <div class="col-6">
-                    <img src="../resource/images/like.png" alt="" style="width: 30px; cursor: pointer;" id="like" class="rounded">
+                    <p id="temaConteudoEscolhido"></p>
+                    <p id="autorConteudoEscolhido"></p>
+                    <p id="descricaoConteudoEscolhido"></p>
+                    <h4><a id="dowloadConteudo" target="_blank">DOWLOAD PDF</a></h4>
+                    <div style="width: 100px; margin-top: 20px; margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-6">
+                                <img src="../resource/images/like.png" alt="" style="width: 30px; cursor: pointer;" id="like"
+                                    class="rounded">
+                            </div>
+                            <div class="col-6">
+                                <img src="../resource/images/dislike.png" alt="" style="width: 30px; cursor: pointer;" id="dislike"
+                                    class="rounded">
+                            </div>
+                        </div>
+                        <h2>Like</h2>
+                        <p id="numeroLikes"></p>
+                        <h2>Dislike</h2>
+                        <p id="numeroDislikes"></p>
+                    </div>
+                    <div style="height: 200px; overflow-y: scroll;">
+                        <h1>Comentários</h1>
+                        <ul id="comentariosConteudo">
+                        </ul>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Comentário" id="inserirComentario">
+                        <input type="button" value="Comentar" id="comentar">
+                    </div>
+                    <div id="chat-box" class="mt-3"></div>
+                    <input type="text" id="user-input" placeholder="Digite sua mensagem">
+                    <button id="enviarMsg">Enviar</button>
                 </div>
                 <div class="col-6">
-                    <img src="../resource/images/dislike.png" alt="" style="width: 30px; cursor: pointer;" id="dislike" class="rounded">
+                    <img src="../resource/images/brilho-e-contraste.png" alt="" id="modo" width="50px" style="cursor: pointer;">
+                    <div id="itens" style="position: relative;">
+                        <iframe id="iframe" src="" width="600" height="780" style="border: none;"></iframe>
+                    </div>
                 </div>
             </div>
-            <h2>Like</h2>
-            <p id="numeroLikes"></p>
-            <h2>Dislike</h2>
-            <p id="numeroDislikes"></p>
         </div>
-
-        <img src="../resource/images/brilho-e-contraste.png" alt="" id="modo" width="50px" style="cursor: pointer;">
-        <div id="itens" style="position: relative;">
-            <iframe id="iframe" src="" width="600" height="780" style="border: none;"></iframe>
-        </div>
-        <div id="chat-box"></div>
-        <input type="text" id="user-input" placeholder="Digite sua mensagem">
-        <button id="enviarMsg">Enviar</button>
     </div>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 NihaoHub. Todos os direitos reservados.</p>
+    </footer>
+
     <script type="module" src="../controller/ConteudoController.js"></script>
     <script type="module" src="../controller/VisualizadorConteudoController.js"></script>
     <script type="module" src="../controller/JorgeController.js"></script>

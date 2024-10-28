@@ -100,22 +100,33 @@ if (divConteudosAdministrador) {
     .then((res) => {
         res.items.forEach((itemRef) => {
             let div = document.getElementById("conteudosAdministrador");
-            let a = document.createElement("a");
-            let p = document.createElement("p");
-            a.setAttribute("class", "pdfDowload");
-            a.setAttribute("name", itemRef["_location"]["path_"]);
-            a.setAttribute("target", "_blank");
+            let divGrande = document.createElement("div");
+            let divPequena = document.createElement("div");
+            let titulo = document.createElement("h5");
+            let descricao = document.createElement("p");
+            let nomeAutor = document.createElement("small");
+            divGrande.setAttribute("class", "col-md-4");
+            divPequena.setAttribute("class", "content-box");
+            titulo.setAttribute("style", "cursor: pointer;");
             get(child(dbRef, 'Conteudo/')).then((snapshot) => {
                 snapshot.forEach(function (childSnapshot) {
                     var childData = childSnapshot.val();
 
                     if (snapshot.exists()) {
                         if (childData.nomeConteudo == itemRef["_location"]["path_"]) {
-                            a.innerHTML = "Id: " + childData.idConteudo + " Nome: " + itemRef["_location"]["path_"];
-                            a.setAttribute("id", childData.idConteudo);
-                            a.addEventListener("click", detalhesConteudo, false)
-                            p.appendChild(a);
-                            div.appendChild(p);
+                            titulo.innerHTML =  "Id: " + childData.idConteudo + " Nome: " + itemRef["_location"]["path_"];
+                            titulo.setAttribute("id", childData.idConteudo);
+                            titulo.addEventListener("click", detalhesConteudo, false);
+                            titulo.setAttribute("class", "pdfDowload");
+                            titulo.setAttribute("name", itemRef["_location"]["path_"]);
+                            titulo.setAttribute("target", "_blank");
+                            descricao.innerHTML = childData.descricao;
+                            nomeAutor.innerHTML = childData.autor;
+                            divPequena.appendChild(titulo);
+                            divPequena.appendChild(nomeAutor);
+                            divPequena.appendChild(descricao);
+                            divGrande.appendChild(divPequena);
+                            div.appendChild(divGrande);
                         }
                     } else {
                         console.log("No data available");
@@ -137,11 +148,21 @@ if (divUsuariosAdministrador) {
     
             if (snapshot.exists()) {
                 let div = document.getElementById("usuariosAdministrador");
-                let a = document.createElement("a");
-                let p = document.createElement("p");
-                a.innerHTML = "Id: " + childData.idEducador + " Nome: " + childData.nomeEducador + " Email: " + childData.loginEducador + " Classe: Educador";
-                p.appendChild(a);
-                div.appendChild(p);
+                let divGrande = document.createElement("div");
+                let divPequena = document.createElement("div");
+                let titulo = document.createElement("h5");
+                let email = document.createElement("p");
+                let tipo = document.createElement("small");
+                divGrande.setAttribute("class", "col-md-4");
+                divPequena.setAttribute("class", "content-box");
+                titulo.innerHTML = "Id: " + childData.idEducador + " Nome: " + childData.nomeEducador;
+                email.innerHTML = childData.loginEducador;
+                tipo.innerHTML = "Educador";
+                divPequena.appendChild(titulo);
+                divPequena.appendChild(email);
+                divPequena.appendChild(tipo);
+                divGrande.appendChild(divPequena);
+                div.appendChild(divGrande);
             } else {
                 console.log("No data available");
             }
@@ -156,11 +177,21 @@ if (divUsuariosAdministrador) {
     
             if (snapshot.exists()) {
                 let div = document.getElementById("usuariosAdministrador");
-                let a = document.createElement("a");
-                let p = document.createElement("p");
-                a.innerHTML = "Id: " + childData.idEstudante + " Nome: " + childData.nomeEstudante + " Email: " + childData.loginEstudante + " Classe: Estudante";
-                p.appendChild(a);
-                div.appendChild(p);
+                let divGrande = document.createElement("div");
+                let divPequena = document.createElement("div");
+                let titulo = document.createElement("h5");
+                let email = document.createElement("p");
+                let tipo = document.createElement("small");
+                divGrande.setAttribute("class", "col-md-4");
+                divPequena.setAttribute("class", "content-box");
+                titulo.innerHTML = "Id: " + childData.idEstudante + " Nome: " + childData.nomeEstudante;
+                email.innerHTML = childData.loginEstudante;
+                tipo.innerHTML = "Estudante";
+                divPequena.appendChild(titulo);
+                divPequena.appendChild(email);
+                divPequena.appendChild(tipo);
+                divGrande.appendChild(divPequena);
+                div.appendChild(divGrande);
             } else {
                 console.log("No data available");
             }
@@ -171,7 +202,7 @@ if (divUsuariosAdministrador) {
 }
 
 $("#excluirEducador").click(function () {
-    deletarEducador(user);
+    deletarEducador();
 });
 
 $("#excluirConteudo").click(function () {

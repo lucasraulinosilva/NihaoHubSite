@@ -58,22 +58,33 @@ if(divConteudos) {
     .then((res) => {
         res.items.forEach((itemRef) => {
             let div = document.getElementById("conteudos");
-            let a = document.createElement("a");
-            let p = document.createElement("p");
-            a.setAttribute("class", "pdfDowload");
-            a.setAttribute("name", itemRef["_location"]["path_"]);
-            a.setAttribute("target", "_blank");
-            a.innerHTML = itemRef["_location"]["path_"]
+            let divGrande = document.createElement("div");
+            let divPequena = document.createElement("div");
+            let titulo = document.createElement("h5");
+            let descricao = document.createElement("p");
+            let nomeAutor = document.createElement("small");
+            divGrande.setAttribute("class", "col-md-4");
+            divPequena.setAttribute("class", "content-box");
+            titulo.setAttribute("style", "cursor: pointer;");
             get(child(dbRef, 'Conteudo/')).then((snapshot) => {
-                snapshot.forEach(function(childSnapshot) {
+                snapshot.forEach(function (childSnapshot) {
                     var childData = childSnapshot.val();
-        
+
                     if (snapshot.exists()) {
-                        if(childData.nomeConteudo == itemRef["_location"]["path_"]) {
-                            a.setAttribute("id", childData.idConteudo);
-                            a.addEventListener("click", detalhesConteudo, false)
-                            p.appendChild(a);
-                            div.appendChild(p);
+                        if (childData.nomeConteudo == itemRef["_location"]["path_"]) {
+                            titulo.innerHTML =  "Id: " + childData.idConteudo + " Nome: " + itemRef["_location"]["path_"];
+                            titulo.setAttribute("id", childData.idConteudo);
+                            titulo.addEventListener("click", detalhesConteudo, false);
+                            titulo.setAttribute("class", "pdfDowload");
+                            titulo.setAttribute("name", itemRef["_location"]["path_"]);
+                            titulo.setAttribute("target", "_blank");
+                            descricao.innerHTML = childData.descricao;
+                            nomeAutor.innerHTML = childData.autor;
+                            divPequena.appendChild(titulo);
+                            divPequena.appendChild(nomeAutor);
+                            divPequena.appendChild(descricao);
+                            divGrande.appendChild(divPequena);
+                            div.appendChild(divGrande);
                         }
                     } else {
                         console.log("No data available");
