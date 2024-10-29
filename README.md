@@ -1,7 +1,7 @@
 ## **NihaoHub**  💻📚
 
 <div align= "center">
-<img src="/assets/video-site.mp4" alt="Vídeo do site">
+<img src="/assets/video-site.gif" alt="Vídeo do site">
 </div>
 
 
