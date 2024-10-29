@@ -96,7 +96,7 @@ function addMessageToChatBox(role, message, data) {
                 var childData = childSnapshot.val();
     
                 if (snapshot.exists()) {
-                  temas.push(childData.tema);
+                  temas.push(" " + childData.tema);
                 } else {
                     console.log("No data available");
                 }
@@ -118,7 +118,7 @@ function addMessageToChatBox(role, message, data) {
   chatBox.appendChild(messageElement);
   chatBox.scrollTop = chatBox.scrollHeight; // Rolagem automática para a última mensagem
 }
-
+console.log("SA");
 // Função para enviar a mensagem do usuário e obter a resposta da API
 async function sendMessage() {
   const userMessage = userInput.value;

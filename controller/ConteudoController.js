@@ -72,7 +72,7 @@ if(divConteudos) {
 
                     if (snapshot.exists()) {
                         if (childData.nomeConteudo == itemRef["_location"]["path_"]) {
-                            titulo.innerHTML =  "Id: " + childData.idConteudo + " Nome: " + itemRef["_location"]["path_"];
+                            titulo.innerHTML =  itemRef["_location"]["path_"];
                             titulo.setAttribute("id", childData.idConteudo);
                             titulo.addEventListener("click", detalhesConteudo, false);
                             titulo.setAttribute("class", "pdfDowload");

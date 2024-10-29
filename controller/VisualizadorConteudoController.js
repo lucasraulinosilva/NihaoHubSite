@@ -127,7 +127,7 @@ get(child(dbRef, 'Conteudo/')).then((snapshot) => {
     snapshot.forEach(function (childSnapshot) {
         var childData = childSnapshot.val();
         if (childData.idConteudo == id) {
-            $("#nomeConteudoEscolhido").html("Nome: " + childData.nomeConteudo);
+            $("#nomeConteudoEscolhido").html(childData.nomeConteudo);
             $("#temaConteudoEscolhido").html("Tema: " + childData.tema);
             $("#autorConteudoEscolhido").html("Autor: " + childData.autor);
             $("#descricaoConteudoEscolhido").html("Descrição: " + childData.descricao);
