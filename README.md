@@ -1,7 +1,7 @@
-# NihaoHub  💻📚
+## **NihaoHub**  💻📚
 
 <div align= "center">
-<img src="/assets/android-chrome-512x512.png" alt="Ícone NihaoHub">
+<img src="/assets/video-site.mp4" alt="Vídeo do site">
 </div>
 
 
