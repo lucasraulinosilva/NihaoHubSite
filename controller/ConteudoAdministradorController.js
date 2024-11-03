@@ -120,7 +120,7 @@ if (divConteudosAdministrador) {
                             titulo.setAttribute("class", "pdfDowload");
                             titulo.setAttribute("name", itemRef["_location"]["path_"]);
                             titulo.setAttribute("target", "_blank");
-                            descricao.innerHTML = childData.descricao;
+                            descricao.innerHTML = childData['descricao'].substring(0,100) + "...";
                             nomeAutor.innerHTML = childData.autor;
                             divPequena.appendChild(titulo);
                             divPequena.appendChild(nomeAutor);

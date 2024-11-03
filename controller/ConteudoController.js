@@ -44,7 +44,6 @@ setPersistence(auth, browserSessionPersistence)
     // ...
     // New sign-in will be persisted with session persistence.
     emailEducador = auth.currentUser.email;
-    $("#emailGeral").html(auth.currentUser.email);
     return signInWithEmailAndPassword(auth, email, password);
 })
 .catch((error) => {
@@ -78,7 +77,7 @@ if(divConteudos) {
                             titulo.setAttribute("class", "pdfDowload");
                             titulo.setAttribute("name", itemRef["_location"]["path_"]);
                             titulo.setAttribute("target", "_blank");
-                            descricao.innerHTML = childData.descricao;
+                            descricao.innerHTML = childData['descricao'].substring(0,100) + "...";
                             nomeAutor.innerHTML = childData.autor;
                             divPequena.appendChild(titulo);
                             divPequena.appendChild(nomeAutor);
@@ -109,6 +108,7 @@ if(input != null) {
             if (snapshot.exists()) {
                 if(childData.loginEducador == emailEducador) {
                     idEducador = childData.idEducador;
+                    $("#emailGeral").html("Bem-vindo, Educador "+childData.nomeEducador+" !");
                 }
             } else {
                 console.log("No data available");
@@ -168,9 +168,24 @@ if(input != null) {
                 nomeConteudo: files[0].name,
                 tema: tema
             });
-              console.log('Uploaded a blob or file!');
           });
       });
+} else {
+    get(child(dbRef, 'Estudante/')).then((snapshot) => {
+        snapshot.forEach(function(childSnapshot) {
+            var childData = childSnapshot.val();
+
+            if (snapshot.exists()) {
+                if(childData.loginEstudante == emailEducador) {
+                    $("#emailGeral").html("Bem-vindo, Estudante "+childData.nomeEstudante+" !");
+                }
+            } else {
+                console.log("No data available");
+            }
+        });
+    }).catch((error) => {
+        console.error(error);
+    });
 }
 
 function detalhesConteudo() {

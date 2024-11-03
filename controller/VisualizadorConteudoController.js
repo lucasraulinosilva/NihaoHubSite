@@ -128,29 +128,38 @@ get(child(dbRef, 'Conteudo/')).then((snapshot) => {
         var childData = childSnapshot.val();
         if (childData.idConteudo == id) {
             $("#nomeConteudoEscolhido").html(childData.nomeConteudo);
-            $("#temaConteudoEscolhido").html("Tema: " + childData.tema);
-            $("#autorConteudoEscolhido").html("Autor: " + childData.autor);
-            $("#descricaoConteudoEscolhido").html("Descrição: " + childData.descricao);
+            $("#temaConteudoEscolhido").html(childData.tema);
+            $("#autorConteudoEscolhido").html(childData.autor);
+            $("#descricaoConteudoEscolhido").html(childData.descricao);
         }
     });
 }).catch((error) => {
     console.error(error);
 });
 
-get(child(dbRef, 'Comentario/')).then((snapshot) => {
-    snapshot.forEach(function (childSnapshot) {
-        var childData = childSnapshot.val();
-        if (childData.idConteudo == id) {
-            let listaComentarios = document.getElementById("comentariosConteudo");
-            let li = document.createElement("li");
-            li.innerHTML = "Nome: " + childData.nomeAutorComentario + " Comentário: " + childData.comentario;
-            listaComentarios.appendChild(li);
-        }
-        idComentario = childData.idComentario;
+lerComentarios();
+
+function lerComentarios() {
+    let listaComentarios = document.getElementById("comentariosConteudo");
+    while (listaComentarios.children.length > 0) {
+        listaComentarios.removeChild(listaComentarios.children[0]);
+    }
+    get(child(dbRef, 'Comentario/')).then((snapshot) => {
+        snapshot.forEach(function (childSnapshot) {
+            var childData = childSnapshot.val();
+            if (childData.idConteudo == id) {
+                let listaComentarios = document.getElementById("comentariosConteudo");
+                let li = document.createElement("li");
+                li.setAttribute("class", "list-group-item");
+                li.innerHTML = "Nome: " + childData.nomeAutorComentario + " Comentário: " + childData.comentario;
+                listaComentarios.appendChild(li);
+            }
+            idComentario = childData.idComentario;
+        });
+    }).catch((error) => {
+        console.error(error);
     });
-}).catch((error) => {
-    console.error(error);
-});
+}
 
 $("#comentar").click(function () {
     var valorComentario = $("#inserirComentario").val();
@@ -161,6 +170,8 @@ $("#comentar").click(function () {
         idComentario: (idComentario + 1),
         comentario: valorComentario
     });
+
+    lerComentarios();
 });
 
 $("#dowloadConteudo").attr("href", variavel);
@@ -303,5 +314,3 @@ $("#dislike").click(function () {
         console.error(error);
     });
 });
-
-console.log("j");

@@ -201,5 +201,3 @@ $("#modo").click(function () {
         $("#filtro").show();
     }
 })
-
-console.log("kk");

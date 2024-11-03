@@ -118,7 +118,7 @@ function addMessageToChatBox(role, message, data) {
   chatBox.appendChild(messageElement);
   chatBox.scrollTop = chatBox.scrollHeight; // Rolagem automática para a última mensagem
 }
-console.log("SA");
+
 // Função para enviar a mensagem do usuário e obter a resposta da API
 async function sendMessage() {
   const userMessage = userInput.value;
@@ -175,3 +175,13 @@ $("#enviarMsg").click(function() {
 function onlyUnique(value, index, array) {
   return array.indexOf(value) === index;
 }
+
+$(document).on('keyup', '#user-input', function(event) {   
+  if (event.which == 13) {
+       if(event.shiftKey){
+           console.log('Quebra de linha');
+       }else{
+        sendMessage();
+      }
+  }
+});
