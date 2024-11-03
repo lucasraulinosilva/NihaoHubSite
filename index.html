@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>NihaoHub</title>
+    <link rel="shortcut icon" href="/assets/android-chrome-512x512.png" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -23,17 +24,8 @@
         /* Estilos personalizados */
         body {
             background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
             /* Cor de fundo */
-        }
-
-        .navbar {
-            background-color: #304D6D;
-            /* Cor da navbar */
-        }
-
-        .navbar a {
-            color: white !important;
-            /* Cor do texto da navbar */
         }
 
         /* Adicionando estilos responsivos */
@@ -81,20 +73,28 @@
 </head>
 
 <body>
-    <ul class="navbar nav nav-underline justify-content-center p-3">
-        <li class="nav-item">
-            <img src="resource/images/junin.png" alt="" class="rounded" width="70px">
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="cadastro.html">Cadastro</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-        </li>
-    </ul>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <img src="resource/images/logo.png" alt="" class="rounded navbar-brand" width="70px" style="position: absolute;">
+            <div class="d-md-flex d-block w-100">
+                <div class="collapse navbar-collapse mx-auto w-auto justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <ul class="navbar nav nav-underline justify-content-center p-3 d-flex" style="background-color: #f8f9fa;">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="cadastro.html">Cadastro</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">Login</a>
+                            </li>
+                        </ul>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="container mt-5 p-5" style="
     background-color: #63adf2;
@@ -125,9 +125,6 @@
                     <h1 class="fs-4 fw-bold">Aprenda assuntos profundos de forma fácil</h1>
                     <p class="fs-6">Venha entender como funciona o nosso sistema de arquivos.</p>
                 </div>
-                <button type="button" class="btn btn-light rounded-pill fw-bold"
-                    style="padding: 12px; padding-left: 15px; padding-right: 15px; margin-left: 18px;">Leia
-                    mais</button>
             </div>
             <div class="col-md-3 p-3"
                 style="background-color: #D4CCE0; border-radius: 15px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
@@ -138,9 +135,6 @@
                     <h1 class="fs-4 fw-bold">Em qualquer lugar e a qualquer hora</h1>
                     <p class="fs-6">Totalmente online, com suporte para celular, tablet e computador</p>
                 </div>
-                <button type="button" class="btn btn-light rounded-pill fw-bold"
-                    style="padding: 12px; padding-left: 15px; padding-right: 15px; margin-left: 18px;">Leia
-                    mais</button>
             </div>
             <div class="col-md-3 p-3"
                 style="background-color: #A7CCED; border-radius: 15px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
@@ -151,9 +145,6 @@
                     <h1 class="fs-4 fw-bold">Sem papéis e confusões para atrapalhar</h1>
                     <p class="fs-6">Tudo digital, acesse a web ou instale o aplicativo e pronto, só estudar</p>
                 </div>
-                <button type="button" class="btn btn-light rounded-pill fw-bold"
-                    style="padding: 12px; padding-left: 15px; padding-right: 15px; margin-left: 18px;">Leia
-                    mais</button>
             </div>
         </div>
     </div>

@@ -22,24 +22,36 @@
 <style>
     body {
         background-color: #f8f9fa;
+        font-family: 'Poppins', sans-serif;
     }
-    .navbar {
-            background-color: #304D6D; /* Cor da navbar */
-        }
 
-        .navbar a {
-            color: white !important; /* Cor do texto da navbar */
-        }
 </style>
 
 <body>
-    <nav class="navbar nav nav-underline justify-content-center p-3">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link active" href="cadastro.html">Cadastro</a>
-        <a class="nav-link" href="login.html">Login</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <img src="resource/images/logo.png" alt="" class="rounded navbar-brand" width="70px" style="position: absolute;">
+            <div class="d-md-flex d-block w-100">
+                <div class="collapse navbar-collapse mx-auto w-auto justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <ul class="navbar nav nav-underline justify-content-center p-3 d-flex" style="background-color: #f8f9fa;">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="cadastro.html">Cadastro</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html">Login</a>
+                            </li>
+                        </ul>  
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <main class="container mt-5">
+    <main class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10">
                 <article class="card shadow-lg p-5">
@@ -119,7 +131,7 @@
 
                         <!-- Botão de Enviar -->
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary w-100" id="cadastro">Cadastrar</button>
+                            <button type="submit" class="btn btn-primary w-100" id="cadastro" style="background-color: #63adf2;">Cadastrar</button>
                         </div>
                     </form>
                     <div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" id="cadastroBemSucedido">

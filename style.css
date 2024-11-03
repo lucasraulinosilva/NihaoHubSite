@@ -1,13 +1,13 @@
 .nav-link {
-    color: black;
+    color: black !important;
 }
 
 .nav-link:hover {
-    color: white !important;
+    color: black !important;
 }
 
 .nav-underline .nav-link.active {
-    color: white !important;
+    color: black !important;
 }
 
 .imgPequena {

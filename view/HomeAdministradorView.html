@@ -25,20 +25,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="../style.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
         }
 
-        .navbar {
-            background-color: #304D6D;
-        }
-
-        .navbar a {
-            color: white !important;
-        }
 
         .content-box {
             background-color: #ffffff;
@@ -50,7 +43,7 @@
         }
 
         .content-box h5 {
-            color: #304D6D;
+            color: #63adf2;
         }
 
         .content-box p {
@@ -58,7 +51,7 @@
         }
 
         .content-box small {
-            color: #304D6D;
+            color: #63adf2;
         }
 
         .btn-danger {
@@ -76,12 +69,11 @@
         }
 
         .section-title {
-            color: #304D6D;
             margin-top: 30px;
         }
 
         .header-box {
-            background-color: #304D6D;
+            background-color: #63adf2;
             color: white;
             padding: 10px;
             border-radius: 10px 10px 0 0;
@@ -115,13 +107,26 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark p-3">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Painel Administrador</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <img src="../resource/images/logo.png" alt="" class="rounded navbar-brand" width="70px" style="position: absolute;">
+            <div class="d-md-flex d-block w-100">
+                <div class="collapse navbar-collapse mx-auto w-auto justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <ul class="navbar nav nav-underline justify-content-center p-3 d-flex" style="background-color: #f8f9fa;">
+                            <li class="nav-item">
+                                <a class="nav-link" href="../index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../cadastro.html">Cadastro</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../login.html">Login</a>
+                            </li>
+                        </ul>  
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 

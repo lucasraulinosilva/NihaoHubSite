@@ -173,7 +173,7 @@ let css = `
             pointer-events: none;
             top: 0;
             left: 0;
-            width: 600px;
+            width: 100%;
             height: 780px;
             background-color: #EDEDE9;
             mix-blend-mode: difference;
