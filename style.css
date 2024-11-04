@@ -45,6 +45,15 @@
     font-style: normal;
 }
 
+p,
+li,
+label,
+input { 
+    font-size: 14px !important;
+}
 
-
-
+button {
+    font-family: "Poppins", sans-serif !important;
+    font-weight: 700 !important;
+    font-style: normal !important;
+}

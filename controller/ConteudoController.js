@@ -168,6 +168,10 @@ if(input != null) {
                 nomeConteudo: files[0].name,
                 tema: tema
             });
+
+            const toastLiveExample9 = document.getElementById('conteudoCadastrado');
+            const toastBootstrap9 = bootstrap.Toast.getOrCreateInstance(toastLiveExample9);
+            toastBootstrap9.show();
           });
       });
 } else {
@@ -217,4 +221,3 @@ export function deletarConteudo() {
     remove(singleRef).then(function () {}).catch(function (error) {});
 
 }
-

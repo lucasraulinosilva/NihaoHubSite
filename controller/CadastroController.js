@@ -63,12 +63,15 @@ get(child(dbRef, 'Area/')).then((snapshot) => {
 
 $("#cadastro").click(function() {
 
-    if($("input[type='radio'][name='tipoCadastro']:checked").val() == "educador") {
+    if($("input[type='radio'][name='tipoCadastro']:checked").val() == "educador" && $("input[type='radio'][id='concordar']:checked")) {
         var email = $("#email").val();
         var password = $("#senha").val();
         var nome = $("#nome").val();
         var area = $("#area").val();
         var formacao = $("#formacao").val();
+
+        const senhaInput = document.getElementById("senha");
+        InvalidMsg(senhaInput);
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
@@ -111,10 +114,13 @@ $("#cadastro").click(function() {
             console.log(errorMessage);
         });
 
-    } else if($("input[type='radio'][name='tipoCadastro']:checked").val() == "estudante") {
+    } else if($("input[type='radio'][name='tipoCadastro']:checked").val() == "estudante" && $("input[type='radio'][id='concordar']:checked")) {
         var email = $("#email").val();
         var password = $("#senha").val();
         var nome = $("#nome").val();
+
+        const senhaInput = document.getElementById("senha");
+        InvalidMsg(senhaInput);
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
@@ -146,4 +152,20 @@ $("#cadastro").click(function() {
         });
     }
 
+
 });
+
+
+function InvalidMsg(textbox) {
+    if (textbox.value === '') {
+        textbox.setCustomValidity('A senha precisa possuir pelo menos 6 dígitos');
+    } else if (textbox.validity.typeMismatch){
+        textbox.setCustomValidity('');
+    } else if (textbox.value.length < 6) {
+        textbox.setCustomValidity('A senha precisa possuir pelo menos 6 dígitos');
+    } else {
+       textbox.setCustomValidity('');
+    }
+
+    return true;
+}

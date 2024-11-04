@@ -17,8 +17,8 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
@@ -31,7 +31,7 @@
         .card-header {
             background-color: #63adf2;
             color: white;
-            
+
         }
 
         .card {
@@ -89,15 +89,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <img src="../resource/images/logo.png" alt="" class="rounded navbar-brand" width="70px" style="position: absolute;">
+            <img src="../resource/images/logo.png" alt="" class="rounded navbar-brand" width="70px"
+                style="position: absolute;">
             <div class="d-md-flex d-block w-100">
                 <div class="collapse navbar-collapse mx-auto w-auto justify-content-center" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <ul class="navbar nav nav-underline justify-content-center p-3 d-flex" style="background-color: #f8f9fa;">
+                        <ul class="navbar nav nav-underline justify-content-center p-3 d-flex"
+                            style="background-color: #f8f9fa;">
                             <li class="nav-item">
                                 <a class="nav-link" href="../index.html">Home</a>
                             </li>
-                        </ul>  
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -122,11 +124,13 @@
                 <form class="row g-3" onsubmit="return false;">
                     <div class="col-md-6">
                         <label for="autor" class="form-label">Autor</label>
-                        <input type="text" class="form-control" id="autor" placeholder="Digite o nome do autor" required>
+                        <input type="text" class="form-control" id="autor" placeholder="Digite o nome do autor"
+                            required>
                     </div>
                     <div class="col-md-6">
                         <label for="descricao" class="form-label">Descrição</label>
-                        <input type="text" class="form-control" id="descricao" placeholder="Digite uma descrição" required>
+                        <input type="text" class="form-control" id="descricao" placeholder="Digite uma descrição"
+                            required>
                     </div>
                     <div class="col-md-6">
                         <label for="tema" class="form-label">Tema</label>
@@ -140,8 +144,17 @@
                     <div class="col-12 text-center">
                         <button type="submit" id="enviarArquivo" class="btn btn-primary">Enviar</button>
                     </div>
-                </form>
+                    <div class="toast align-items-center border-0 mt-3 container-fluid text-center mt-3"
+                        role="alert" aria-live="assertive" aria-atomic="true" id="conteudoCadastrado" style="background-color: #63adf2; border-color: #63adf2; color: white;">
+                        <div class="d-flex">
+                            <div class="toast-body container-fluid">
+                                Conteúdo cadastrado.
+                            </div>
+                        </div>
+                    </div>
             </div>
+            </form>
+        </div>
         </div>
     </main>
 
@@ -154,7 +167,3 @@
 </body>
 
 </html>
-
-
-
-
