@@ -62,4 +62,9 @@ button {
     .position-absolute {
         position: relative !important;
     }
+    
+    .float-end {
+        float: left !important;
+        margin-bottom: 10px;
+    }
 }
